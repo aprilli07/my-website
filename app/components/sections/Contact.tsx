@@ -17,13 +17,43 @@ export default function Contact() {
         setFormData((prev) => ({ ...prev, [name]: value}))
     }
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        console.log("Form Submitted:", formData)
+    const encode = (data: Record<string, string>) =>
+        Object.entries(data)
+        .map(
+            ([key, value]) =>
+            `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
+        )
+        .join("&");
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        try {
+        const payload = {
+            "form-name": "contact",
+            name: formData.name,
+            email: formData.email,
+            message: formData.message,
+        };
+
+        const res = await fetch("/", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: encode(payload),
+        });
+
+        if (!res.ok) throw new Error("Submission failed");
+
         setSubmitted(true);
-        setFormData({ name: '', email: '', message: '' });
-        setTimeout(() => setSubmitted(false), 3000)
-    }
+        setFormData({ name: "", email: "", message: "" });
+
+        setTimeout(() => setSubmitted(false), 3000);
+        } catch (error) {
+        console.error(error);
+        alert("Something went wrong. Please try again.");
+        }
+    };
+
 
     return (
         <section id="contact" className="border-b border-border">
@@ -35,7 +65,22 @@ export default function Contact() {
 
                 <div className="grid gap-12 md:grid-cols-2">
                     {/* contact form */}
-                    <form onSubmit={handleSubmit} className="space-y-4">
+                    <form
+                        name="contact"
+                        method="POST"
+                        data-netlify="true"
+                        data-netlify-honeypot="bot-field"
+                        onSubmit={handleSubmit}
+                        className="space-y-4"
+                    >
+                        <input type="hidden" name="form-name" value="contact" />
+
+                        <p className="hidden">
+                        <label>
+                            Don’t fill this out if you’re human: <input name="bot-field" />
+                        </label>
+                        </p>
+
                         <div>
                             <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">Name</label>
                             <input
@@ -92,13 +137,13 @@ export default function Contact() {
                             <h3 className="text-lg font-semibold text-foreground mb-6">Other ways to reach me</h3>
                             <div className="space-y-6">
                                 <a
-                                    href="mailto:april.tao07@gmail.com"
+                                    href="mailto:07april.li@gmail.com"
                                     className="flex items-center gap-3 p-4 rounded-lg border border-border hover:bg-muted transition-colors group"
                                 >
                                     <Mail size={20} className="text-accent group-hover:scale-110 transition-transform"/>
                                     <div>
                                         <p className="text-sm text-muted-foreground">Email</p>
-                                        <p className="text-foreground font-medium">april.tao07@gmail.com</p>
+                                        <p className="text-foreground font-medium">07april.li@gmail.com</p>
                                     </div>
                                 </a>
                                 <a
@@ -121,7 +166,7 @@ export default function Contact() {
                                     </div>
                                 </a>
                                 <a
-                                    href="linkedin.com/in/07aprilli"
+                                    href="https://linkedin.com/in/07aprilli"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="flex items-center gap-3 p-4 rounded-lg border border-border hover:bg-muted transition-colors group"

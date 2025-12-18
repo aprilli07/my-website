@@ -5,19 +5,36 @@ import { ExternalLink, Github } from "lucide-react";
 export default function Projects() {
     const projects = [
         {
-            title: "Software Engineer",
-            description: "Developed and maintained web applications using React and Node.js.",
-            tech: ["React", "Node.js", "TypeScript"],
-            link:"#",
-            github:"#"
+            title: "MailGest",
+            description: "A web app that summarizes and categories emails using AI.",
+            tech: ["React", "Vite", "Tailwind CSS", "MongoDB", "Google OAuth", "Gemini API"],
+            link:"https://mail-gest.vercel.app/",
+            github:"https://github.com/aprilli07/MailGest"
         },
         {
-            title: "Software Engineer",
-            description: "Developed and maintained web applications using React and Node.js.",
-            tech: ["React", "Node.js", "TypeScript"],
-            link:"#",
-            github:"#"
-        }
+            title: "Electrium Mobility - Request Platform",
+            description: "A web app that tracks and assigns tasks to team members.",
+            tech: ["Next.js", "TypeScript", "CSS", "SupaBase", "Next Auth"],
+            github:"https://github.com/Electrium-Mobility/Request-Platform"
+        },
+        {
+            title: "NutriLens",
+            description: "TechNova 2025 Hackathon. A mobile app that scans food items and provides nutritional information.",
+            tech: ["TypeScript", "Expo", "React Native"],
+            github:"https://github.com/xzshinena/NutriLens"
+        },
+        {
+            title: "My Website",
+            description: "You're currently viewing my personal portfolio website!",
+            tech: ["TypeScript", "React", "Next.js", "Tailwind CSS"],
+            github:"https://github.com/aprilli07/my-website"
+        },
+        {
+            title: "Guess Who",
+            description: "A classic version of the Guess Who board game.",
+            tech: ["Java", "Swing", "AWT"],
+            github:"https://github.com/aprilli07/GuessWho"
+        },
     ]
 
     return (
@@ -43,14 +60,20 @@ export default function Projects() {
                             </div>
 
                             <div className="flex gap-4 pt-4 border-t border-border">
-                                <a
-                                    href={project.link}
-                                    className="inline-flex items-center gap-2 text-sm text-accent hover:text-accent transition-colors"
-                                >
-                                    Live <ExternalLink size={14} />
-                                </a>
+                                {project.link && (
+                                    <a
+                                        href={project.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-2 text-sm text-accent hover:text-accent transition-colors"
+                                    >
+                                        Live <ExternalLink size={14} />
+                                    </a>
+                            )}
                                 <a
                                     href={project.github}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="inline-flex items-center gap-2 text-sm text-accent hover:text-accent transition-colors"
                                 >
                                     Code <Github size={14} />

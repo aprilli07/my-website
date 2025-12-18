@@ -17,40 +17,24 @@ export default function Contact() {
         setFormData((prev) => ({ ...prev, [name]: value}))
     }
 
-    const encode = (data: Record<string, string>) =>
-        Object.entries(data)
-        .map(
-            ([key, value]) =>
-            `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
-        )
-        .join("&");
-
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         try {
-        const payload = {
-            "form-name": "contact",
-            name: formData.name,
-            email: formData.email,
-            message: formData.message,
-        };
-
-        const res = await fetch("/", {
+            const res = await fetch("/api", {
             method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: encode(payload),
-        });
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData),
+            });
 
-        if (!res.ok) throw new Error("Submission failed");
+            if (!res.ok) throw new Error("Failed to send");
 
-        setSubmitted(true);
-        setFormData({ name: "", email: "", message: "" });
-
-        setTimeout(() => setSubmitted(false), 3000);
+            setSubmitted(true);
+            setFormData({ name: "", email: "", message: "" });
+            setTimeout(() => setSubmitted(false), 3000);
         } catch (error) {
-        console.error(error);
-        alert("Something went wrong. Please try again.");
+            console.error(error);
+            alert("Something went wrong. Please try again.");
         }
     };
 
@@ -65,22 +49,7 @@ export default function Contact() {
 
                 <div className="grid gap-12 md:grid-cols-2">
                     {/* contact form */}
-                    <form
-                        name="contact"
-                        method="POST"
-                        data-netlify="true"
-                        data-netlify-honeypot="bot-field"
-                        onSubmit={handleSubmit}
-                        className="space-y-4"
-                    >
-                        <input type="hidden" name="form-name" value="contact" />
-
-                        <p className="hidden">
-                        <label>
-                            Don’t fill this out if you’re human: <input name="bot-field" />
-                        </label>
-                        </p>
-
+                    <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
                             <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">Name</label>
                             <input

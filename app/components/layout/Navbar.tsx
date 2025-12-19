@@ -6,6 +6,7 @@ export default function NavBar() {
     const [isOpen, setIsOpen] = useState(false);
 
     const navItems = [
+        { name: "Hero", href: "#hero" },
         { name: "Projects", href: "#projects" },
         { name: "Contact", href: "#contact" },
     ];
@@ -16,7 +17,7 @@ export default function NavBar() {
         <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
             <nav className="mx-auto max-w-4xl px-4 py-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between">
-                    <Link href="/" className="text-xl font-semibold tracking-tight text-foreground hover:text-accent transition-colors no-underline">
+                    <Link href="#hero" className="text-xl font-semibold tracking-tight text-foreground hover:text-accent transition-colors no-underline">
                         April Li
                     </Link>
 

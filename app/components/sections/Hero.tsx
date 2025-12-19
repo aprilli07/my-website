@@ -1,13 +1,28 @@
 "use client";
 
+import { TypeAnimation } from "react-type-animation";
+
 export default function Hero() {
     return (
         <section className="border-b border-border">
             <div className="mx-auto max-w-4xl px-4 py-20 sm:px-6 lg:px-8">
                 <div className="space-y-6 animate-fade-in">
                     <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-balance">
-                       Hey! I'm April, <br/>
-                       a <span className="text-accent">computer science</span> student 
+                        Hey! I&apos;m April,
+                        <br />
+                        a{" "}
+                        <span className="text-accent">
+                            <TypeAnimation
+                            sequence={[
+                                "computer science student",
+                                1500,
+                                "software developer",
+                                1500,
+                            ]}
+                            speed={50}
+                            repeat={Infinity}
+                            />
+                        </span>
                     </h1>
                     <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
                           I'm a first year computer science student at the University of Waterloo, focused on learning and building practical software development skills. 

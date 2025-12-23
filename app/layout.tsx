@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "April Li",
   description: "Personal Portfolio of April Li, a Computer Science student at the University of Waterloo.",
+  icons: {
+    icon:"/icon.png",
+  }
 };
 
 export default function RootLayout({

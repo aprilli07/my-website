@@ -5,6 +5,12 @@ import { ExternalLink, Github } from "lucide-react";
 export default function Projects() {
     const projects = [
         {
+            title: "NutriLens",
+            description: "TechNova 2025 Hackathon. A mobile app that scans food items and provides nutritional information.",
+            tech: ["TypeScript", "Expo", "React Native"],
+            github:"https://github.com/xzshinena/NutriLens"
+        },
+        {
             title: "MailGest",
             description: "A web app that summarizes and categories emails using AI.",
             tech: ["React", "Vite", "Tailwind CSS", "MongoDB", "Google OAuth", "Gemini API"],
@@ -12,28 +18,16 @@ export default function Projects() {
             github:"https://github.com/aprilli07/MailGest"
         },
         {
-            title: "Electrium Mobility - Request Platform",
-            description: "A web app that tracks and assigns tasks to team members.",
-            tech: ["Next.js", "TypeScript", "CSS", "SupaBase", "Next Auth"],
-            github:"https://github.com/Electrium-Mobility/Request-Platform"
-        },
-        {
-            title: "NutriLens",
-            description: "TechNova 2025 Hackathon. A mobile app that scans food items and provides nutritional information.",
-            tech: ["TypeScript", "Expo", "React Native"],
-            github:"https://github.com/xzshinena/NutriLens"
+            title: "Guess Who",
+            description: "A classic version of the Guess Who board game.",
+            tech: ["Java", "Swing", "AWT"],
+            github:"https://github.com/aprilli07/GuessWho"
         },
         {
             title: "My Website",
             description: "You're currently viewing my personal portfolio website!",
             tech: ["TypeScript", "React", "Next.js", "Tailwind CSS"],
             github:"https://github.com/aprilli07/my-website"
-        },
-        {
-            title: "Guess Who",
-            description: "A classic version of the Guess Who board game.",
-            tech: ["Java", "Swing", "AWT"],
-            github:"https://github.com/aprilli07/GuessWho"
         },
     ]
 

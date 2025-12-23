@@ -153,10 +153,10 @@ export default function Contact() {
                                         <p className="text-foreground font-medium">linkedin.com/in/07aprilli</p>
                                     </div>
                                 </a>
-
                                 <a
-                                    href="#"
-                                    className="flex items-center gap-3 p-4 rounded-lg border border-border hover:bg-muted transition-colors group"
+                                href="/April_Li_Resume.pdf"
+                                download
+                                className="flex items-center gap-3 p-4 rounded-lg border border-border hover:bg-muted transition-colors group"
                                 >
                                     <FileText size={20} className="text-accent group-hover:scale-110 transition-transform"/>
 

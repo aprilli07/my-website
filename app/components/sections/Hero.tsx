@@ -32,7 +32,9 @@ export default function Hero() {
 
                     <div className="flex flex-wrap gap-3 pt-4">
                         <a
-                            href="#projects"
+                            href="/April_Li_Resume.pdf"
+                            target="__blank"
+                            rel="noopener noreferrer"
                             className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-accent text-accent-foreground font-medium hover:opacity-90 transition-opacity"
                         >
                             Resume

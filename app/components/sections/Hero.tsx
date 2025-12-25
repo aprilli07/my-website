@@ -11,17 +11,17 @@ export default function Hero() {
                         Hey! I&apos;m April,
                         <br />
                         a{" "}
-                        <span className="text-accent">
-                            <TypeAnimation
+                        <span className="text-accent inline-block min-h-[4.5em]">
+                        <TypeAnimation
                             sequence={[
-                                "computer science student",
-                                1500,
-                                "software developer",
-                                1500,
+                            "computer science student",
+                            1500,
+                            "software developer",
+                            1500,
                             ]}
                             speed={50}
                             repeat={Infinity}
-                            />
+                        />
                         </span>
                     </h1>
                     <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">

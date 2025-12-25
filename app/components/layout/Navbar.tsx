@@ -55,6 +55,7 @@ export default function NavBar() {
                         <Link
                         key={item.href}
                         href={item.href}
+                        onClick={() => setIsOpen(false)}
                         className="block text-sm text-muted-foreground hover:text-accent transition-colors">
                             {item.name}
                         </Link>

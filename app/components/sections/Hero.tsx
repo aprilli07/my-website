@@ -8,21 +8,23 @@ export default function Hero() {
             <div className="mx-auto max-w-4xl px-4 py-20 sm:px-6 lg:px-8">
                 <div className="space-y-6 animate-fade-in">
                     <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-balance">
-                        Hey! I&apos;m April,
-                        <br />
-                        a{" "}
-                        <span className="text-accent inline-block min-h-[4.5em]">
-                        <TypeAnimation
-                            sequence={[
-                            "computer science student",
-                            1500,
-                            "software developer",
-                            1500,
-                            ]}
-                            speed={50}
-                            repeat={Infinity}
-                        />
-                        </span>
+                            Hey! I&apos;m April,
+                            <br />
+                            <span className="mobile-3-lines block sm:inline">
+                                a{" "}
+                                <span className="text-accent">
+                                    <TypeAnimation
+                                        sequence={[
+                                            "computer science student",
+                                            1500,
+                                            "software developer",
+                                            1500,
+                                        ]}
+                                        speed={50}
+                                        repeat={Infinity}
+                                    />
+                                </span>
+                            </span>
                     </h1>
                     <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
                           I'm a first year computer science student at the University of Waterloo, focused on learning and building practical software development skills. 

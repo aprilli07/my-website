@@ -5,6 +5,13 @@ import { Github } from "lucide-react";
 export default function Experience() {
     const experiences = [
         {
+            title: "Incoming Software Developer",
+            company: "Accelerate Alberta",
+            duration: "Jan 2026 - Mar 2026",
+            description: ["Incoming Software Developer at Accelerate Alberta, developing a production website to strengthen digital presence and streamline operations for home-service businesses."],
+            skills: ["React", "TypeScript", "Next.js", "Tailwind CSS"],
+        },
+        {
             title: "Software Developer",
             company: "UW Electrium Mobility - Request Platform Website",
             duration: "Oct 2025 - Present",

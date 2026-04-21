@@ -5,6 +5,12 @@ import { ExternalLink, Github } from "lucide-react";
 export default function Projects() {
     const projects = [
         {
+            title: "CityWatch",
+            description: "AI-powered city infrastructure monitoring and prediction mobile app.",
+            tech: ["React Native", "Expo", "TypeScript", "Node.js", "Express", "FastAPI", "Supabase", "PostgreSQL", "PostGIS", "TensorFlow", "OpenCV", "Scikit-Learn", "NumPy", "Pandas", "Gemini API", "Auth0", "Mapbox GL"],
+            github:"https://github.com/LegendaryArk/CityWatch"
+        },
+        {
             title: "NutriLens",
             description: "TechNova 2025 Hackathon. A mobile app that scans food items and provides nutritional information.",
             tech: ["TypeScript", "Expo", "React Native"],
@@ -22,12 +28,6 @@ export default function Projects() {
             description: "A classic version of the Guess Who board game.",
             tech: ["Java", "Swing", "AWT"],
             github:"https://github.com/aprilli07/GuessWho"
-        },
-        {
-            title: "My Website",
-            description: "You're currently viewing my personal portfolio website!",
-            tech: ["TypeScript", "React", "Next.js", "Tailwind CSS"],
-            github:"https://github.com/aprilli07/my-website"
         },
     ]
 

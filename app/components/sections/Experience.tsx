@@ -5,18 +5,11 @@ import { ExternalLink, Github } from "lucide-react";
 export default function Experience() {
     const experiences = [
         {
-            title: "Incoming Full Stack Developer",
-            company: "Ontario Power Generation",
-            duration: "May 2026 - Dec 2026",
-            description: ["Incoming Spring 2026 & Fall 2026 "],
-            skills: ["JavaScript", "Angular", "React", "C#", "Python", "Java", "C++", ".NET", "SQL"],
-        },
-        {
-            title: "Incoming Full Stack Developer",
-            company: "LeagueNav",
-            duration: "Apr 2026 - Present",
-            description: ["Redesigning and optimizing a Next.js and TypeScript website with improved layout, responsiveness, and component reusability to increase user engagement and experience."],
-            skills: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Resend"],
+            title: "Full Stack Developer",
+            company: "Ontario Power Generation - Digital & Technology Services",
+            duration: "May 2026 - Present",
+            description: ["Delivered 10+ production features for Project Workbench, an enterprise application managing 10,000+ work orders, leveraging React, TypeScript, .NET, and SQL Server to improve operational efficiency by 30% across OPG.", "Reduced query execution time by 20% by optimizing 10 SQL queries and indexing strategies, improving application responsiveness and accelerating retrieval of work order and project metadata."],
+            skills: ["TypeScript", "Angular", "React", "C#", ".NET", "SQL", "Python", "Java"],
         },
         {
             title: "Frontend Developer",

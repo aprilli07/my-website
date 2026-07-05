@@ -27,7 +27,7 @@ export default function Hero() {
                             </span>
                     </h1>
                     <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-                          I'm a first year computer science student at the University of Waterloo, focused on learning and building practical software development skills. 
+                          I'm a second year computer science student at the University of Waterloo, focused on learning and building practical software development skills. 
                           I'm always seeking internships and new opportunities to apply my knowledge in real-world settings. 
                           Outside of school, I enjoy hiking, photography, and swimming!
                     </p>

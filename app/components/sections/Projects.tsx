@@ -32,34 +32,45 @@ export default function Projects() {
     ]
 
     return (
-        <section id="projects" className="border-b border-border">
-            <div className="mx-auto max-w-4xl px-4 py-20 sm:px-6 lg:px-8">
-                <h2 className="text-3xl font-bold tracking-tight mb-12">Projects</h2>
+        <section id="projects" className="scroll-mt-24">
+            <div className="mx-auto max-w-6xl px-5 py-20 sm:px-6 sm:py-28 lg:px-8">
+                <div className="mb-12 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+                    <div>
+                        <p className="section-index">02 / Selected work</p>
+                        <h2 className="section-title mt-4 max-w-xl">Projects built to solve, learn, and explore.</h2>
+                    </div>
+                    <a href="https://github.com/aprilli07" target="_blank" rel="noopener noreferrer" className="inline-flex w-fit items-center gap-2 text-sm font-semibold text-accent hover:underline">More on GitHub <ArrowUpRightIcon /></a>
+                </div>
 
-                <div className="grid gap-6 md:grid-cols-2">
+                <div className="grid gap-5 md:grid-cols-2">
                     {projects.map((project, index) => (
-                        <div key={index} className="group rounded-lg border border-border p-6 hover:bg-muted transition-colors">
-                            <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">{project.title}</h3>
-                            <p className="text-sm text-muted-foreground mb-4">{project.description}</p>
+                        <article key={index} className={`project-card group flex min-h-[290px] flex-col rounded-2xl border border-foreground/10 p-6 sm:p-7 ${index === 0 ? "md:col-span-2 md:min-h-[330px]" : ""}`}>
+                            <div className="mb-12 flex items-start justify-between">
+                                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">Project 0{index + 1}</span>
+                                <span className="flex size-10 items-center justify-center rounded-full border border-foreground/10 bg-background/60 text-foreground transition-transform group-hover:-translate-y-1 group-hover:translate-x-1"><ArrowUpRightIcon /></span>
+                            </div>
+                            <div className="mt-auto">
+                            <h3 className={`${index === 0 ? "text-4xl sm:text-5xl" : "text-3xl"} font-semibold tracking-[-0.04em] text-foreground transition-colors group-hover:text-accent`}>{project.title}</h3>
+                            <p className="mt-3 max-w-xl text-sm leading-6 text-muted-foreground">{project.description}</p>
 
-                            <div className="flex flex-wrap gap-2 mb-4">
+                            <div className="mt-5 flex flex-wrap gap-x-3 gap-y-1.5">
                                 {project.tech.map((tech) => (
                                     <span
                                         key={tech}
-                                        className="text-xs px-2 py-1 rounded bg-background border border-border text-muted-foreground"
+                                        className="text-[11px] font-medium text-muted-foreground before:mr-1.5 before:text-accent before:content-['•']"
                                     >
                                         {tech}
                                     </span>
                                 ))}
                             </div>
 
-                            <div className="flex gap-4 pt-4 border-t border-border">
+                            <div className="mt-6 flex gap-5 border-t border-foreground/10 pt-5">
                                 {project.link && (
                                     <a
                                         href={project.link}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-2 text-sm text-accent hover:text-accent transition-colors"
+                                        className="inline-flex items-center gap-2 text-sm font-semibold text-accent hover:underline"
                                     >
                                         Live <ExternalLink size={14} />
                                     </a>
@@ -68,15 +79,20 @@ export default function Projects() {
                                     href={project.github}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-2 text-sm text-accent hover:text-accent transition-colors"
+                                    className="inline-flex items-center gap-2 text-sm font-semibold text-accent hover:underline"
                                 >
                                     Code <Github size={14} />
                                 </a>
                             </div>
-                        </div>
+                            </div>
+                        </article>
                     ))}
                 </div>
             </div>
         </section>
     )
+}
+
+function ArrowUpRightIcon() {
+    return <ExternalLink size={15} aria-hidden="true" />;
 }

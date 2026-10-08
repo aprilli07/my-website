@@ -7,19 +7,19 @@ export default function Projects() {
         {
             title: "CityWatch",
             description: "AI-powered city infrastructure monitoring and prediction mobile app.",
-            tech: ["React Native", "Expo", "TypeScript", "Node.js", "Express", "FastAPI", "Supabase", "PostgreSQL", "PostGIS", "TensorFlow", "OpenCV", "Scikit-Learn", "NumPy", "Pandas", "Gemini API", "Auth0", "Mapbox GL"],
+            tech: ["Python", "TensorFlow", "Keras", "scikit-learn", "OpenCV", "FastAPI", "PostgreSQL", "GeoPandas", "PostGIS"],
             github:"https://github.com/LegendaryArk/CityWatch"
         },
         {
             title: "NutriLens",
             description: "TechNova 2025 Hackathon. A mobile app that scans food items and provides nutritional information.",
-            tech: ["TypeScript", "Expo", "React Native"],
+            tech: ["React Native", "TypeScript", "Expo", "Node.js", "MySQL", "Gemini API"],
             github:"https://github.com/xzshinena/NutriLens"
         },
         {
             title: "MailGest",
             description: "A web app that summarizes and categories emails using AI.",
-            tech: ["React", "Vite", "Tailwind CSS", "MongoDB", "Google OAuth", "Gemini API"],
+            tech: ["React", "Node.js", "Express", "MongoDB", "Redis", "GCP", "Gemini API", "OAuth"],
             link:"https://mail-gest.vercel.app/",
             github:"https://github.com/aprilli07/MailGest"
         },

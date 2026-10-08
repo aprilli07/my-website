@@ -8,16 +8,25 @@ export default function Experience() {
             title: "Full Stack Developer",
             company: "Ontario Power Generation - Enterprise & Project Office Applications",
             duration: "May 2026 - Present",
-            description: ["Designed and built Construction Hub, consolidating 3 legacy applications into a unified React + ASP.NET Core platformserving 500+ users and delivering 10x faster application performance.", "Automated construction quality reporting from field data capture to PDF generation and analytics, processing 100+ reports monthly and reducing manual reporting effort by 70%.", "Migrated Project Workbench from Angular to React/TypeScript, and optimized .NET backend services and data access, cutting end-to-end response times by 30% across 10,000+ work orders."],
+            description: 
+                [
+                    "Shipped ConstHub for 500+ engineers, digitizing 100+ operational workflows with electronic forms and approvals.", 
+                    "Reduced manual form processing by 5x with a schema-driven form engine using versioned JSON/HTML templates.", 
+                    "Migrated 10K+ legacy forms and aggregated 250K+ records into interactive safety analytics covering criticality trends, deficiencies, and compliance metrics.", 
+                    "Modernized Project Workbench from Angular to React/TypeScript and optimized .NET data access for 12K+ work orders, improving response times by 30%."
+                ],
             skills: ["TypeScript", "Angular", "React", "C#", "ASP.NET Core", "SQL", "Azure DevOps", "SSMS", "Docker", "Kubernetes"],
         },
         {
             title: "Software Developer",
             company: "Accelerate Alberta",
             duration: "Jan 2026 - Mar 2026",
-            description: ["Built and launched Accelerate Alberta’s production Next.js/React website, improving page responsiveness by 25%, achieving 100% form submission reliability, and strengthening SEO and organic search visibility through performance and content optimization."
-            ],
-            skills: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Resend"],
+            description: 
+                [
+                    "Built and launched a production lead-capture and onboarding website, increasing online submissions by ∼35%.", 
+                    "Achieved 95+ Lighthouse score and cut page load times from ∼3s to ∼1.2s through rendering and asset optimizations."
+                ],
+            skills: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Resend", "Vercel"],
             link: "https://acceleratealberta.ca",
             github: "https://github.com/aprilli07/AccelerateAlberta"
         },
@@ -25,8 +34,12 @@ export default function Experience() {
             title: "Software Developer",
             company: "UW Electrium Mobility - Request Platform Website",
             duration: "Oct 2025 - Dec 2025",
-            description: ["Developed an internal Next.js/TypeScript task-tracking platform for 20+ team members, reducing manual project tracking by 40% through reusable workflows and Supabase/PostgreSQL integration."],
-            skills: ["Next.js", "TypeScript", "CSS", "SupaBase", "Next Auth"],
+            description: 
+                [
+                    "Streamlined project tracking for 50+ members across 7 subteams, eliminating ∼40% of manual coordination.",
+                    "Cut task-update latency by 80% with real-time synchronization and optimistic UI updates across concurrent users."
+                ],
+            skills: ["Next.js", "TypeScript", "CSS", "SupaBase", "PostgreSQL","Next Auth"],
             github:"https://github.com/Electrium-Mobility/Request-Platform",
         },
     ]

@@ -37,8 +37,7 @@ export default function Experience() {
                     "Achieved 95+ Lighthouse score and cut page load times from ∼3s to ∼1.2s through rendering and asset optimizations."
                 ],
             skills: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Resend", "Vercel"],
-            link: "https://acceleratealberta.ca",
-            github: "https://github.com/aprilli07/AccelerateAlberta"
+            link: "https://acceleratealberta.ca"
         },
     ]
 
@@ -61,17 +60,6 @@ export default function Experience() {
                                 <div className="mt-1.5 flex flex-wrap items-center gap-2">
                                   <p className="text-sm font-medium text-accent">{exp.company}</p>
                                                                     
-                                  {exp.github && (
-                                    <a 
-                                        href={exp.github}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="rounded-md p-1 text-accent transition-colors hover:bg-accent/10"
-                                        aria-label="GitHub repository"
-                                    >
-                                      <Github size={16} />
-                                    </a>
-                                  )}
                                   {exp.link && (
                                     <a
                                         href={exp.link}

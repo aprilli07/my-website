@@ -5,6 +5,16 @@ import { ExternalLink, Github } from "lucide-react";
 export default function Experience() {
     const experiences = [
         {
+            title: "AI Applications Developer",
+            company: "AuxioAI",
+            duration: "Oct 2026 - Present",
+            description: 
+                [
+                    "Developing LLM-powered automation workflows and optimizing lead-generation pipelines."
+                ],
+            skills: ["Python", "FastAPI", "Pydantic", "Pandas"]
+        },
+        {
             title: "Full Stack Developer",
             company: "Ontario Power Generation - Enterprise & Project Office Applications",
             duration: "May 2026 - Present",
@@ -29,18 +39,6 @@ export default function Experience() {
             skills: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Resend", "Vercel"],
             link: "https://acceleratealberta.ca",
             github: "https://github.com/aprilli07/AccelerateAlberta"
-        },
-        {
-            title: "Software Developer",
-            company: "UW Electrium Mobility - Request Platform Website",
-            duration: "Oct 2025 - Dec 2025",
-            description: 
-                [
-                    "Streamlined project tracking for 50+ members across 7 subteams, eliminating ∼40% of manual coordination.",
-                    "Cut task-update latency by 80% with real-time synchronization and optimistic UI updates across concurrent users."
-                ],
-            skills: ["Next.js", "TypeScript", "CSS", "SupaBase", "PostgreSQL","Next Auth"],
-            github:"https://github.com/Electrium-Mobility/Request-Platform",
         },
     ]
 

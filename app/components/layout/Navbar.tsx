@@ -1,75 +1,109 @@
 "use client";
-import { useState } from "react";
-import Link from "next/link";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ArrowUpRight, Menu, X, Pause, Play } from "lucide-react";
+import { useMotion } from "../Motion";
+import { gsap } from "../motion/gsap";
 
-export default function NavBar() {
-    const [isOpen, setIsOpen] = useState(false);
-
-    const navItems = [
-        { name: "Experience", href: "#experience" },
-        { name: "Projects", href: "#projects" },
-        { name: "Contact", href: "#contact" },
-    ];
-
-    return (
-        <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6">
-            <nav className="nav-shell mx-auto max-w-6xl rounded-2xl border border-foreground/10 bg-background/85 px-4 py-3 shadow-[0_12px_40px_rgba(25,32,42,0.08)] backdrop-blur-xl sm:px-5">
-                <div className="flex items-center justify-between gap-6">
-                    <Link href="#hero" className="group flex items-center gap-3 no-underline" aria-label="April Li, back to top">
-                        <span className="flex size-9 items-center justify-center rounded-xl bg-foreground text-xs font-bold tracking-[0.08em] text-background transition-transform group-hover:-rotate-3">AL</span>
-                        <span className="hidden text-sm font-semibold tracking-tight text-foreground sm:block">April Li</span>
-                    </Link>
-
-                    {/* Mobile Hamburger Button */}
-                    <button
-                        onClick={() => setIsOpen(!isOpen)}
-                        className="rounded-lg p-2 text-foreground transition-colors hover:bg-foreground/5 md:hidden"
-                        aria-label={isOpen ? "Close menu" : "Open menu"}
-                        aria-expanded={isOpen}
-                    >
-                        {isOpen ? <X size={20} /> : <Menu size={20} />}
-                    </button>
-
-                    {/* Desktop Menu */}
-                    <div className="hidden items-center gap-1 md:flex">
-                        {navItems.map((item) => (
-                            <Link 
-                            key={item.href}
-                            href={item.href}
-                            className="rounded-lg px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-foreground/5 hover:text-foreground">
-                                {item.name}
-                            </Link>
-                        ))}
-                        <a
-                            href="/April_Li_Resume.pdf"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="ml-2 inline-flex items-center gap-1.5 rounded-xl bg-foreground px-4 py-2 text-sm font-medium text-background transition-transform hover:-translate-y-0.5"
-                        >
-                            Résumé <ArrowUpRight size={14} />
-                        </a>
-                    </div>
-                </div>
-                
-                {/* Mobile Menu */}
-                {isOpen && (
-                  <div className="mt-3 space-y-1 border-t border-foreground/10 pt-3 md:hidden">
-                    {navItems.map((item) => (
-                        <Link
-                        key={item.href}
-                        href={item.href}
-                        onClick={() => setIsOpen(false)}
-                        className="block rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-foreground/5 hover:text-foreground">
-                            {item.name}
-                        </Link>
-                    ))}
-                    <a href="/April_Li_Resume.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 px-3 py-2.5 text-sm font-semibold text-accent">
-                        View résumé <ArrowUpRight size={14} />
-                    </a>
-                  </div>  
-                )}
-            </nav>
-        </header>
-    )
-} 
+const links = [
+  { href: "#experience", name: "Experience" },
+  { href: "#projects", name: "Projects" },
+  { href: "#contact", name: "Contact" },
+];
+export default function Navbar() {
+  const [open, setOpen] = useState(false);
+  const { paused, toggle } = useMotion();
+  const mobileNav = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const close = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", close);
+    return () => window.removeEventListener("keydown", close);
+  }, []);
+  useEffect(() => {
+    if (!open || paused || !mobileNav.current) return;
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const timeline = gsap
+      .timeline({ defaults: { ease: "expo.out" } })
+      .from(mobileNav.current, {
+        clipPath: "inset(0 0 100% 0)",
+        duration: 0.6,
+        clearProps: "clipPath",
+      })
+      .from(
+        mobileNav.current.children,
+        { x: -44, autoAlpha: 0, stagger: 0.07, duration: 0.7 },
+        0.1,
+      );
+    return () => {
+      timeline.revert();
+    };
+  }, [open, paused]);
+  return (
+    <header className="site-header">
+      <div className="scroll-progress" />
+      <nav className="nav-inner" aria-label="Main navigation">
+        <a className="wordmark" href="#hero" aria-label="April Li, home">
+          A<span className="wordmark-star">✳</span>L
+          <span className="wordmark-dot">.</span>
+        </a>
+        <span className="nav-caption">DEVELOPER &amp; CURIOUS HUMAN</span>
+        <div className="desktop-nav">
+          <span className="nav-marker" aria-hidden="true">
+            ✳
+          </span>
+          {links.map((link, i) => (
+            <a href={link.href} key={link.href}>
+              <sup>0{i + 1}</sup>
+              <span className="nav-label">{link.name}</span>
+            </a>
+          ))}
+        </div>
+        <div className="nav-actions">
+          <button
+            className="motion-toggle"
+            onClick={toggle}
+            aria-label={paused ? "Enable animations" : "Pause animations"}
+            aria-pressed={paused}
+            title={paused ? "Enable animations" : "Pause animations"}
+          >
+            {paused ? <Play size={14} /> : <Pause size={14} />}
+          </button>
+          <a
+            href="/April_Li_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-resume"
+            data-magnetic
+          >
+            Résumé <ArrowUpRight size={16} />
+          </a>
+          <button
+            className="menu-toggle"
+            aria-label={open ? "Close navigation" : "Open navigation"}
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            onClick={() => setOpen(!open)}
+          >
+            {open ? <X /> : <Menu />}
+          </button>
+        </div>
+        {open && (
+          <div id="mobile-nav" className="mobile-nav" ref={mobileNav}>
+            {links.map((link, i) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+              >
+                <span>0{i + 1}</span>
+                {link.name}
+                <ArrowUpRight />
+              </a>
+            ))}
+          </div>
+        )}
+      </nav>
+    </header>
+  );
+}

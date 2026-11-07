@@ -1,102 +1,171 @@
-"use client";
-
-import { ExternalLink, Github } from "lucide-react";
-
+import { ArrowUpRight } from "lucide-react";
+const experiences = [
+  {
+    company: "AuxioAI",
+    title: "AI Applications Developer",
+    duration: "OCT 2026 — PRESENT",
+    description: [
+      "Developing LLM-powered automation workflows and optimizing lead-generation pipelines.",
+    ],
+    skills: ["Python", "FastAPI", "Pydantic", "Pandas"],
+    kind: "INTELLIGENT SYSTEMS",
+  },
+  {
+    company: "Ontario Power Generation",
+    title: "Full Stack Developer",
+    duration: "MAY 2026 — PRESENT",
+    description: [
+      "Shipped ConstHub for 500+ engineers, digitizing 100+ operational workflows with electronic forms and approvals.",
+      "Reduced manual form processing by 5× with a schema-driven form engine using versioned JSON/HTML templates.",
+      "Migrated 10K+ legacy forms and aggregated 250K+ records into interactive safety analytics.",
+      "Modernized Project Workbench from Angular to React/TypeScript and optimized .NET data access for 12K+ work orders, improving response times by 30%.",
+    ],
+    skills: [
+      "React",
+      "TypeScript",
+      "Angular",
+      "C#",
+      "ASP.NET Core",
+      "SQL",
+      "Azure DevOps",
+      "SSMS",
+      "Docker",
+      "Kubernetes",
+    ],
+    kind: "ENTERPRISE & PROJECT OFFICE APPLICATIONS",
+  },
+  {
+    company: "Accelerate Alberta",
+    title: "Software Developer",
+    duration: "JAN 2026 — MAR 2026",
+    description: [
+      "Built and launched a production lead-capture and onboarding website, increasing online submissions by ~35%.",
+      "Achieved a 95+ Lighthouse score and cut page load times from ~3s to ~1.2s through rendering and asset optimizations.",
+    ],
+    skills: [
+      "React",
+      "TypeScript",
+      "Next.js",
+      "Tailwind CSS",
+      "Resend",
+      "Vercel",
+    ],
+    kind: "WEB DEVELOPMENT",
+    link: "https://acceleratealberta.ca",
+  },
+];
+// Figures like 500+, 5× and ~35% get highlighted and count up on reveal.
+const METRIC = /(~?\d+K?[+×%])/;
+function withMetrics(line: string) {
+  return line.split(METRIC).map((part, i) =>
+    i % 2 ? (
+      <span className="metric" key={i}>
+        {part}
+      </span>
+    ) : (
+      part
+    ),
+  );
+}
 export default function Experience() {
-    const experiences = [
-        {
-            title: "AI Applications Developer",
-            company: "AuxioAI",
-            duration: "Oct 2026 - Present",
-            description: 
-                [
-                    "Developing LLM-powered automation workflows and optimizing lead-generation pipelines."
-                ],
-            skills: ["Python", "FastAPI", "Pydantic", "Pandas"]
-        },
-        {
-            title: "Full Stack Developer",
-            company: "Ontario Power Generation - Enterprise & Project Office Applications",
-            duration: "May 2026 - Present",
-            description: 
-                [
-                    "Shipped ConstHub for 500+ engineers, digitizing 100+ operational workflows with electronic forms and approvals.", 
-                    "Reduced manual form processing by 5x with a schema-driven form engine using versioned JSON/HTML templates.", 
-                    "Migrated 10K+ legacy forms and aggregated 250K+ records into interactive safety analytics covering criticality trends, deficiencies, and compliance metrics.", 
-                    "Modernized Project Workbench from Angular to React/TypeScript and optimized .NET data access for 12K+ work orders, improving response times by 30%."
-                ],
-            skills: ["TypeScript", "Angular", "React", "C#", "ASP.NET Core", "SQL", "Azure DevOps", "SSMS", "Docker", "Kubernetes"],
-        },
-        {
-            title: "Software Developer",
-            company: "Accelerate Alberta",
-            duration: "Jan 2026 - Mar 2026",
-            description: 
-                [
-                    "Built and launched a production lead-capture and onboarding website, increasing online submissions by ∼35%.", 
-                    "Achieved 95+ Lighthouse score and cut page load times from ∼3s to ∼1.2s through rendering and asset optimizations."
-                ],
-            skills: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Resend", "Vercel"],
-            link: "https://acceleratealberta.ca"
-        },
-    ]
-
-    return (
-       <section id="experience" className="section-band scroll-mt-24 border-y border-foreground/10">
-        <div className="mx-auto grid max-w-6xl gap-12 px-5 py-20 sm:px-6 sm:py-28 lg:grid-cols-[0.55fr_1.45fr] lg:gap-20 lg:px-8">
-            <div>
-                <p className="section-index">01 / Experience</p>
-                <h2 className="section-title mt-4">Where I&apos;ve made an impact.</h2>
-                <p className="mt-5 max-w-sm leading-7 text-muted-foreground">Building reliable products across energy, mobility, and technology teams.</p>
+  return (
+    <section id="experience" className="experience light-section">
+      <div className="section-top" data-reveal>
+        <span className="eyebrow">01 / THE JOURNEY</span>
+        <span className="eyebrow">REAL TEAMS. REAL IMPACT.</span>
+      </div>
+      <div className="section-heading" data-reveal>
+        <h2>
+          Good code.
+          <br />
+          <span className="serif">Real-world impact.</span>
+        </h2>
+        <p>
+          From energy infrastructure to AI automation,
+          <br />I build software that makes people’s
+          <br />
+          everyday work a little better.
+        </p>
+      </div>
+      <div className="experience-list">
+        <div className="experience-line" />
+        <span className="line-star" aria-hidden="true">
+          ✳
+        </span>
+        {experiences.map((exp, i) => (
+          <article className="experience-row" key={exp.company} data-reveal>
+            <div className="experience-date">
+              <span className="timeline-dot" />
+              <span>{exp.duration}</span>
+              <span className="experience-number">0{i + 1}</span>
             </div>
-
-            <div className="space-y-5">
-                {experiences.map((exp, index) => (
-                    <article key={index} className="experience-card group rounded-2xl border border-foreground/10 bg-card p-6 sm:p-8">
-                        <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                            <div>
-                                <div className="mb-2 flex items-center gap-3"><span className="text-xs font-semibold text-accent">0{index + 1}</span><span className="h-px w-7 bg-accent/40" /></div>
-                                <h3 className="text-xl font-semibold tracking-tight text-foreground">{exp.title}</h3>
-                                <div className="mt-1.5 flex flex-wrap items-center gap-2">
-                                  <p className="text-sm font-medium text-accent">{exp.company}</p>
-                                                                    
-                                  {exp.link && (
-                                    <a
-                                        href={exp.link}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-1 rounded-md px-1.5 py-1 text-xs font-semibold text-accent transition-colors hover:bg-accent/10"
-                                    >
-                                        Live <ExternalLink size={14} />
-                                    </a>
-                                  )}
-                                </div>
-                            </div>
-                            <p className="rounded-full bg-foreground/5 px-3 py-1.5 text-xs font-medium text-muted-foreground sm:whitespace-nowrap">{exp.duration}</p>
-                        </div>
-                            {Array.isArray(exp.description) ? (
-                            <ul className="mb-6 space-y-3 text-sm leading-6 text-muted-foreground">
-                                {exp.description.map((desc, i) => (
-                                    <li key={i} className="relative pl-5 before:absolute before:left-0 before:top-[0.65rem] before:size-1.5 before:rounded-full before:bg-accent">{desc}</li>
-                                ))}
-                            </ul>
-                        ) : (
-                            <p className="text-muted-foreground mb-4">{exp.description}</p>
-                        )}
-                        <div className="flex flex-wrap gap-1.5 border-t border-foreground/10 pt-5">
-                            {exp.skills && exp.skills.map((skill) => (
-                                <span
-                                    key={skill}
-                                    className="inline-block rounded-md border border-foreground/8 bg-background px-2.5 py-1 text-xs font-medium text-muted-foreground"
-                                >
-                                    {skill}
-                                </span>
-                            ))}
-                        </div>
-                    </article>
+            <div className="experience-content">
+              <p className="eyebrow experience-kind">{exp.kind}</p>
+              <h3>
+                <span className="company">{exp.company}</span>
+                {exp.link && (
+                  <a
+                    href={exp.link}
+                    aria-label="Visit Accelerate Alberta"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <ArrowUpRight size={24} />
+                  </a>
+                )}
+              </h3>
+              <p className="experience-role">{exp.title}</p>
+              <ul>
+                {exp.description.map((line) => (
+                  <li key={line}>{withMetrics(line)}</li>
                 ))}
+              </ul>
+              <div className="tags">
+                {exp.skills.map((skill) => (
+                  <span key={skill}>{skill}</span>
+                ))}
+              </div>
             </div>
+          </article>
+        ))}
+      </div>
+      <div className="resume-strip" id="resume" data-reveal>
+        <div>
+          <span className="eyebrow">THE FULL STORY, ON PAPER.</span>
+          <h3>Like what you’re seeing?</h3>
         </div>
-       </section>
-    )
+        <div className="resume-paper" aria-hidden="true">
+          <b>AL✳</b>
+          <i />
+          <i />
+          <i />
+          <i />
+          <i />
+        </div>
+        <a
+          className="dark-button"
+          href="/April_Li_Resume.pdf"
+          download
+          data-magnetic
+        >
+          Download my résumé <ArrowDownIcon />
+        </a>
+      </div>
+    </section>
+  );
+}
+function ArrowDownIcon() {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      aria-hidden="true"
+    >
+      <path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5" />
+    </svg>
+  );
 }

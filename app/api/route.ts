@@ -1,45 +1,68 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(req: Request) {
+  let body: unknown;
   try {
-    const { name, email, message } = await req.json();
+    body = await req.json();
+  } catch {
+    return NextResponse.json(
+      { success: false, error: "Invalid request" },
+      { status: 400 },
+    );
+  }
 
-    if (!name || !email || !message) {
-      return NextResponse.json(
-        { success: false, error: "Missing required fields" },
-        { status: 400 }
-      );
-    }
-
-    if (!process.env.RESEND_API_KEY) {
-      return NextResponse.json(
-        { success: false, error: "RESEND_API_KEY not configured" },
-        { status: 500 }
-      );
-    }
-
-    await resend.emails.send({
-      from: "April <onboarding@resend.dev>", 
-      to: "07april.li@gmail.com",             
-      replyTo: email,                        
-      subject: `New message from ${name}`,
-      html: `
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message}</p>
-      `,
+  if (!body || typeof body !== "object") {
+    return NextResponse.json(
+      { success: false, error: "Invalid request" },
+      { status: 400 },
+    );
+  }
+  const { name, email, message } = body as Record<string, unknown>;
+  if (
+    typeof name !== "string" ||
+    typeof email !== "string" ||
+    typeof message !== "string" ||
+    !name.trim() ||
+    !message.trim() ||
+    name.length > 100 ||
+    email.length > 254 ||
+    message.length > 5000 ||
+    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+  ) {
+    return NextResponse.json(
+      {
+        success: false,
+        error: "Please provide a valid name, email, and message.",
+      },
+      { status: 400 },
+    );
+  }
+  if (!process.env.RESEND_API_KEY) {
+    return NextResponse.json(
+      { success: false, error: "Email is temporarily unavailable." },
+      { status: 503 },
+    );
+  }
+  try {
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    const { error } = await resend.emails.send({
+      from: "April <onboarding@resend.dev>",
+      to: "07april.li@gmail.com",
+      replyTo: email.trim(),
+      subject: `New message from ${name.trim().replace(/[\r\n]/g, " ")}`,
+      text: `Name: ${name.trim()}\nEmail: ${email.trim()}\n\n${message.trim()}`,
     });
-
+    if (error)
+      return NextResponse.json(
+        { success: false, error: "Unable to send message." },
+        { status: 502 },
+      );
     return NextResponse.json({ success: true });
-  } catch (error) {
-    console.error(error);
+  } catch {
     return NextResponse.json(
       { success: false, error: "Unexpected server error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

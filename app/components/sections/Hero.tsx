@@ -1,124 +1,161 @@
-"use client";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
 
-import { useEffect, useState } from "react";
-import { ArrowDown, ArrowUpRight, MapPin, Sparkles } from "lucide-react";
+function OrbitalArt() {
+  return (
+    <div className="orbital-art" aria-hidden="true">
+      <svg viewBox="0 0 520 520" fill="none">
+        <defs>
+          <radialGradient id="orb-glow">
+            <stop stopColor="#82b7ff" stopOpacity=".16" />
+            <stop offset="1" stopColor="#82b7ff" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+        <circle cx="260" cy="260" r="250" fill="url(#orb-glow)" />
+        <circle
+          className="orbit-pulse"
+          cx="260"
+          cy="260"
+          r="217"
+          strokeWidth="1"
+        />
+        <g stroke="#627799" strokeWidth=".7">
+          <circle cx="260" cy="260" r="217" />
+          <circle cx="260" cy="260" r="170" strokeDasharray="2 7" />
+          <path d="M15 260h490M260 15v490" strokeDasharray="3 7" />
+        </g>
+        <g className="orbit-rotor" stroke="#82b7ff" strokeWidth="1.15">
+          {[0, 30, 60, 90, 120, 150].map((angle) => (
+            <ellipse
+              key={angle}
+              className="orbit-path"
+              cx="260"
+              cy="260"
+              rx="216"
+              ry="78"
+              transform={`rotate(${angle} 260 260)`}
+            />
+          ))}
+          <circle cx="260" cy="43" r="7" fill="#82b7ff" stroke="none" />
+          <circle cx="260" cy="477" r="5" fill="#82b7ff" stroke="none" />
+        </g>
+        <g className="asterisk-rotor" fill="#82b7ff">
+          {[0, 45, 90, 135].map((angle) => (
+            <rect
+              key={angle}
+              x="246"
+              y="166"
+              width="28"
+              height="188"
+              rx="2"
+              transform={`rotate(${angle} 260 260)`}
+            />
+          ))}
+        </g>
+        <circle cx="260" cy="260" r="22" fill="#141b2b" />
+        <path d="m253 260 5 5 10-11" stroke="#82b7ff" strokeWidth="2" />
+      </svg>
+      <span className="orbit-label orbit-label-top">IDEAS IN ORBIT</span>
+      <span className="orbit-label orbit-label-bottom">
+        AL / ALWAYS EXPLORING
+      </span>
+      <span className="orbit-coordinate">
+        43.4643° N<br />
+        80.5204° W
+      </span>
+    </div>
+  );
+}
 
-const heroPhrases = [
-    "Hey! I’m April, a computer science student.",
-    "Building useful software with care.",
-];
-
-function TypingHeadline() {
-    const [phraseIndex, setPhraseIndex] = useState(0);
-    const [characterCount, setCharacterCount] = useState(0);
-    const [isDeleting, setIsDeleting] = useState(false);
-    const phrase = heroPhrases[phraseIndex];
-    const visibleText = phrase.slice(0, characterCount);
-    const careIndex = visibleText.indexOf("care");
-
-    useEffect(() => {
-        const atEnd = characterCount === phrase.length;
-        const atStart = characterCount === 0;
-        const delay = atEnd && !isDeleting ? 1800 : isDeleting ? 35 : 58;
-
-        const timeout = window.setTimeout(() => {
-            if (atEnd && !isDeleting) {
-                setIsDeleting(true);
-                return;
-            }
-
-            if (atStart && isDeleting) {
-                setIsDeleting(false);
-                setPhraseIndex((current) => (current + 1) % heroPhrases.length);
-                return;
-            }
-
-            setCharacterCount((current) => current + (isDeleting ? -1 : 1));
-        }, delay);
-
-        return () => window.clearTimeout(timeout);
-    }, [characterCount, isDeleting, phrase.length]);
-
-    return (
-        <>
-            <span className="sr-only">Hey! I’m April, a computer science student building useful software with care.</span>
-            <span aria-hidden="true">
-                {careIndex === -1 ? visibleText : (
-                    <>
-                        {visibleText.slice(0, careIndex)}
-                        <span className="font-serif font-normal italic text-accent">{visibleText.slice(careIndex)}</span>
-                    </>
-                )}
-                <span className="typing-cursor" aria-hidden="true" />
-            </span>
-        </>
-    );
+function HeroIris() {
+  return (
+    <div className="iris" aria-hidden="true">
+      <svg className="iris-star" viewBox="-100 -100 200 200">
+        <circle r="40" />
+        {[0, 45, 90, 135].map((angle) => (
+          <rect
+            key={angle}
+            x="-14"
+            y="-94"
+            width="28"
+            height="188"
+            rx="2"
+            transform={`rotate(${angle})`}
+          />
+        ))}
+      </svg>
+      <p className="iris-statement">
+        <span>A little curiosity.</span>
+        <span className="serif">A lot of code.</span>
+      </p>
+    </div>
+  );
 }
 
 export default function Hero() {
-    return (
-        <section id="hero" className="relative overflow-hidden pt-28 sm:pt-36">
-            <div className="hero-grid pointer-events-none absolute inset-0 opacity-50" />
-            <div className="relative mx-auto max-w-6xl px-5 pb-20 pt-10 sm:px-6 sm:pb-28 sm:pt-16 lg:px-8 lg:pb-32">
-                <div className="grid items-end gap-14 lg:grid-cols-[1.5fr_0.7fr] lg:gap-20">
-                    <div className="animate-fade-in">
-                        <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/8 px-3 py-1.5 text-xs font-semibold tracking-wide text-accent">
-                            <Sparkles size={13} /> Open to new opportunities
-                        </div>
-                        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.22em] text-muted-foreground">Software developer · CS student</p>
-                        <h1 className="min-h-[4.8em] max-w-4xl text-5xl font-semibold leading-[0.96] tracking-[-0.055em] text-foreground sm:min-h-[2.9em] sm:text-7xl lg:min-h-[2em] lg:text-[5.75rem]">
-                            <TypingHeadline />
-                        </h1>
-                        <p className="mt-8 max-w-2xl text-lg leading-8 text-muted-foreground sm:text-xl">
-                            I&apos;m April, a second year Computer Science student at the University of Waterloo. I turn complex problems into practical, thoughtful digital products.
-                        </p>
-
-                        <div className="mt-9 flex flex-wrap gap-3">
-                        <a
-                            href="/April_Li_Resume.pdf"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="primary-button inline-flex items-center justify-center gap-2 rounded-xl bg-foreground px-5 py-3 text-sm font-semibold text-background"
-                        >
-                            View résumé <ArrowUpRight size={16} />
-                        </a>
-                        <a
-                            href="#contact"
-                            className="secondary-button inline-flex items-center justify-center gap-2 rounded-xl border border-foreground/15 bg-background/60 px-5 py-3 text-sm font-semibold text-foreground"
-                        >
-                            Let&apos;s talk <ArrowDown size={16} />
-                        </a>
-                    </div>
-                    </div>
-
-                    <aside className="relative animate-fade-in-delay lg:pb-2">
-                        <div className="absolute -inset-4 -z-10 rotate-3 rounded-[2rem] bg-accent/10" />
-                        <div className="rounded-[1.75rem] border border-foreground/10 bg-card/90 p-6 shadow-[0_24px_80px_rgba(25,32,42,0.10)] backdrop-blur sm:p-7">
-                            <div className="flex items-center justify-between border-b border-foreground/10 pb-5">
-                                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">Currently</span>
-                                <span className="flex items-center gap-2 text-xs font-medium text-foreground"><span className="size-2 rounded-full bg-emerald-500 shadow-[0_0_0_4px_rgba(16,185,129,0.12)]" /> Available</span>
-                            </div>
-                            <div className="space-y-6 py-6">
-                                <div>
-                                    <p className="text-xs text-muted-foreground">Working as</p>
-                                    <p className="mt-1 font-semibold leading-snug">Full Stack Developer at Ontario Power Generation</p>
-                                </div>
-                                <div>
-                                    <p className="text-xs text-muted-foreground">Studying at</p>
-                                    <p className="mt-1 font-semibold">University of Waterloo</p>
-                                </div>
-                            </div>
-                            <div className="flex items-center gap-2 border-t border-foreground/10 pt-5 text-sm text-muted-foreground">
-                                <MapPin size={15} className="text-accent" /> Toronto / Waterloo, Canada
-                            </div>
-                        </div>
-                    </aside>
-                </div>
-
-                <div className="mt-16 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-foreground/10 pt-6 text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground sm:mt-20">
-                    <span>React</span><span>TypeScript</span><span>Java</span><span>Python</span><span>SQL</span>
-                </div>
+  return (
+    <div className="hero-stage">
+      <section id="hero" className="hero">
+        <div className="hero-kicker">
+          <span className="eyebrow">
+            <span className="status-dot" />{" "}
+            <span className="scramble">OPEN TO NEW OPPORTUNITIES</span>
+          </span>
+          <span className="hero-location">BASED IN TORONTO / WATERLOO, CA</span>
+        </div>
+        <div className="hero-main">
+          <div className="hero-heading">
+            <p className="hero-intro">
+              Hi, I’m April. I build things that matter.
+            </p>
+            <h1 className="hero-word" aria-label="April Li">
+              {["A", "P", "R", "I", "L", "."].map((letter) => (
+                <span
+                  className={
+                    letter === "." ? "hero-letter hero-period" : "hero-letter"
+                  }
+                  key={letter}
+                >
+                  <span>{letter}</span>
+                </span>
+              ))}
+              <span className="sr-only"> Li</span>
+            </h1>
+            <div className="hero-role">
+              <span>SOFTWARE DEVELOPER</span>
+              <span className="small-star">✳</span>
+              <span>CS @ WATERLOO</span>
             </div>
-        </section>
-    )
+          </div>
+          <OrbitalArt />
+        </div>
+        <div className="hero-bottom">
+          <p>
+            Turning complex problems into
+            <br />
+            thoughtful, useful digital experiences.
+            <br />
+            <span>A little curiosity. A lot of code.</span>
+          </p>
+          <a className="round-cta" href="#projects" data-magnetic>
+            <ArrowUpRight size={30} />
+            <span>
+              EXPLORE
+              <br />
+              MY WORK
+            </span>
+          </a>
+          <a href="#experience" className="scroll-cue">
+            <span>SCROLL TO DISCOVER</span>
+            <ArrowDown size={19} />
+          </a>
+        </div>
+        <div className="hero-baseline">
+          <span>PERSONAL PORTFOLIO</span>
+          <span>DESIGNED TO KEEP EVOLVING ↗</span>
+          <span>VOL. 2026</span>
+        </div>
+      </section>
+      <HeroIris />
+    </div>
+  );
 }

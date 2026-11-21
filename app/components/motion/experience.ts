@@ -11,8 +11,10 @@ import {
 /** Rolls a metric such as "~35%" or "10K+" up from zero to its printed value. */
 function countUp(metric: HTMLElement) {
   const text = metric.textContent ?? "";
-  const [, prefix, digits, suffix] = text.match(/^(\D*)(\d+)(.*)$/) ?? [];
+  const [, prefix, digits, suffix] =
+    text.match(/^(\D*)(\d+(?:\.\d+)?)(.*)$/) ?? [];
   if (!digits) return gsap.timeline();
+  const decimals = digits.split(".")[1]?.length ?? 0;
   gsap.set(metric, { minWidth: metric.offsetWidth });
   const value = { current: 0 };
   return gsap.to(value, {
@@ -20,7 +22,11 @@ function countUp(metric: HTMLElement) {
     duration: 1.2,
     ease: "power3.out",
     onUpdate: () => {
-      metric.textContent = `${prefix}${Math.round(value.current)}${suffix}`;
+      metric.textContent = `${prefix}${value.current.toFixed(decimals)}${suffix}`;
+    },
+    // Always settle on the exact printed figure.
+    onComplete: () => {
+      metric.textContent = text;
     },
   });
 }

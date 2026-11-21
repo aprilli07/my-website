@@ -5,9 +5,10 @@ const experiences = [
     title: "AI Applications Developer",
     duration: "OCT 2026 — PRESENT",
     description: [
-      "Developing LLM-powered automation workflows and optimizing lead-generation pipelines.",
+      "Developing smarter scheduling for Alice, an AI voice agent for plumbers, with technician matching, job duration estimates, and returning-caller recognition.",
+      "Shipped an LLM pipeline turning job transcripts into structured job recaps, CSVs, and invoice emails, achieving 100% accuracy across 150 evaluated fields."
     ],
-    skills: ["Python", "FastAPI", "Pydantic", "Pandas"],
+    skills: ["Python", "FastAPI", "Pydantic", "Pandas", "OpenRouter"],
     kind: "INTELLIGENT SYSTEMS",
   },
   {
@@ -15,10 +16,10 @@ const experiences = [
     title: "Full Stack Developer",
     duration: "MAY 2026 — PRESENT",
     description: [
-      "Shipped ConstHub for 500+ engineers, digitizing 100+ operational workflows with electronic forms and approvals.",
-      "Reduced manual form processing by 5× with a schema-driven form engine using versioned JSON/HTML templates.",
+      "Shipped ConstHub, an oversight reporting platform, reducing manual processing 5x and saving $6M/year.",
+      "Built an AI agent with 94% task completion across automated form filling and natural-language dashboard queries.",
+      "Engineered a schema-driven form engine, digitizing 100+ workflows with versioned JSON/HTML templates and automated PDF report generation.",
       "Migrated 10K+ legacy forms and aggregated 250K+ records into interactive safety analytics.",
-      "Modernized Project Workbench from Angular to React/TypeScript and optimized .NET data access for 12K+ work orders, improving response times by 30%.",
     ],
     skills: [
       "React",
@@ -31,6 +32,8 @@ const experiences = [
       "SSMS",
       "Docker",
       "Kubernetes",
+      "LiteLLM",
+      "OpenAI SDK"
     ],
     kind: "ENTERPRISE & PROJECT OFFICE APPLICATIONS",
   },
@@ -54,8 +57,10 @@ const experiences = [
     link: "https://acceleratealberta.ca",
   },
 ];
-// Figures like 500+, 5× and ~35% get highlighted and count up on reveal.
-const METRIC = /(~?\d+K?[+×%])/;
+// Figures like 500+, 5x, ~35%, ~1.2s, $6M/year and "150 evaluated" get
+// highlighted and count up on reveal.
+const METRIC =
+  /(~?\$?\d+[KM]?(?:[+×%]|x\b|\/year)|~\d+(?:\.\d+)?s\b|\d+(?= evaluated))/;
 function withMetrics(line: string) {
   return line.split(METRIC).map((part, i) =>
     i % 2 ? (
